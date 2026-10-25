@@ -1,0 +1,323 @@
+:root {
+  --mesa: #dce3ea;        /* superficie de la mesa de despacho */
+  --mesa-oscura: #c9d2dc;
+  --tinta: #1c2740;       /* texto e impresión de la guía */
+  --tinta-suave: #56637d;
+  --papel: #ffffff;
+  --cinta: #f5c518;       /* cinta de envío express */
+  --sello: #c23b2e;       /* sello de rechazo */
+  --foco: #2f6fdb;
+
+  --fuente: "Archivo", system-ui, sans-serif;
+  --paso: 1.5rem;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--mesa);
+  color: var(--tinta);
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------- Marca */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 0;
+}
+.logo {
+  width: 1.4rem;
+  height: 1.4rem;
+  background: var(--cinta);
+  border: 3px solid var(--tinta);
+  border-radius: 3px;
+  box-shadow: 4px -4px 0 -1px var(--tinta);
+}
+.marca-nombre {
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------ Layout */
+.mesa {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  gap: 3rem;
+  align-items: start;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  font-stretch: 70%;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.intro {
+  max-width: 34rem;
+  margin: 0 0 2rem;
+  color: var(--tinta-suave);
+}
+
+/* ------------------------------------------------------------ Campos */
+form { max-width: 34rem; }
+
+.campo {
+  margin: 0 0 var(--paso);
+  padding: 0;
+  border: 0;
+}
+.campo > label,
+.campo > legend {
+  display: block;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  font-weight: 650;
+}
+
+.entrada-unidad {
+  display: flex;
+  align-items: stretch;
+  background: var(--papel);
+  border: 2px solid var(--tinta);
+  border-radius: 6px;
+}
+.entrada-unidad:focus-within { outline: 3px solid var(--foco); outline-offset: 2px; }
+.entrada-unidad input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.8rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+}
+.unidad {
+  display: flex;
+  align-items: center;
+  padding: 0 0.9rem;
+  color: var(--tinta-suave);
+  font-weight: 600;
+  border-left: 2px solid var(--mesa-oscura);
+}
+.unidad-inicio { padding-right: 0; border-left: 0; }
+
+.campo-invalido .entrada-unidad { border-color: var(--sello); }
+
+.ayuda {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  color: var(--tinta-suave);
+}
+.error-campo {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sello);
+}
+
+/* ----------------------------------------------- Selectores segmentados */
+.segmentos {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  border: 2px solid var(--tinta);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--papel);
+}
+.segmentos label { position: relative; cursor: pointer; }
+.segmentos label + label { border-left: 2px solid var(--tinta); }
+.segmentos input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.segmentos span {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  font-weight: 650;
+  line-height: 1.25;
+}
+.segmentos small {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--tinta-suave);
+}
+.segmentos input:checked + span { background: var(--tinta); color: var(--papel); }
+.segmentos input:checked + span small { color: #c7d0e0; }
+.segmentos input:focus-visible + span { outline: 3px solid var(--foco); outline-offset: -5px; }
+
+/* ------------------------------------------------------------- Botón */
+.boton {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--tinta);
+  color: var(--papel);
+  font: inherit;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+.boton:hover { background: #2a3963; }
+.boton:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+.boton[disabled] { opacity: 0.6; cursor: progress; }
+
+/* --------------------------------------------- Guía de envío (resultado) */
+.resultado { position: sticky; top: 1.5rem; }
+
+.guia {
+  position: relative;
+  overflow: hidden;
+  background: var(--papel);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 var(--mesa-oscura), 0 14px 30px -18px rgba(28, 39, 64, 0.55);
+  transform: rotate(0.6deg);
+}
+.guia-vacia {
+  display: grid;
+  place-items: center;
+  min-height: 22rem;
+  padding: 2rem;
+  background: transparent;
+  border: 2px dashed var(--tinta-suave);
+  box-shadow: none;
+  transform: none;
+}
+.guia-vacia-texto {
+  max-width: 16rem;
+  margin: 0;
+  text-align: center;
+  color: var(--tinta-suave);
+}
+
+.guia-cabecera {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 1.25rem;
+  background: var(--tinta);
+  color: var(--papel);
+}
+.guia-cabecera strong { font-stretch: 112%; font-weight: 800; }
+.guia-cabecera span { font-size: 0.875rem; color: #c7d0e0; }
+
+.guia-datos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1rem;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-bottom: 2px solid var(--tinta);
+}
+.guia-datos dt { font-size: 0.8rem; color: var(--tinta-suave); }
+.guia-datos dd { margin: 0; font-weight: 700; }
+
+.desglose {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.desglose th,
+.desglose td { padding: 0.45rem 1.25rem; }
+.desglose th { text-align: left; font-weight: 400; }
+.desglose th small { display: block; font-size: 0.8rem; color: var(--tinta-suave); }
+.desglose td { text-align: right; white-space: nowrap; font-weight: 600; }
+.desglose tr + tr > * { border-top: 1px dashed var(--mesa-oscura); }
+.desglose .fila-subtotal > * { border-top: 1px solid var(--tinta); }
+.desglose .negativo { color: #2d7a4b; }
+
+.guia-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 2px solid var(--tinta);
+}
+.guia-total span { font-weight: 650; }
+.guia-total output {
+  font-size: 3.2rem;
+  font-weight: 800;
+  font-stretch: 65%;
+  line-height: 0.9;
+}
+
+/* Cinta EXPRESS cruzando la esquina de la guía */
+.cinta {
+  position: absolute;
+  top: 1.35rem;
+  right: -3rem;
+  width: 11rem;
+  padding: 0.2rem 0;
+  background: var(--cinta);
+  color: var(--tinta);
+  text-align: center;
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 0.85rem;
+  transform: rotate(35deg);
+  box-shadow: 0 1px 2px rgba(28, 39, 64, 0.3);
+}
+
+/* Guía rechazada con sello */
+.guia-rechazada .guia-cuerpo { padding: 2.5rem 1.25rem 1.75rem; }
+.sello {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.3rem 0.9rem;
+  border: 4px solid var(--sello);
+  border-radius: 6px;
+  color: var(--sello);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 1.6rem;
+  transform: rotate(-7deg);
+  animation: sellar 260ms cubic-bezier(.2, 1.6, .4, 1) both;
+}
+.guia-rechazada p { margin: 0 0 0.5rem; }
+.guia-rechazada .codigo { font-size: 0.85rem; color: var(--tinta-suave); }
+
+@keyframes sellar {
+  from { transform: rotate(-7deg) scale(1.8); opacity: 0; }
+  to   { transform: rotate(-7deg) scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sello { animation: none; }
+}
+
+/* ------------------------------------------------------------ Móvil */
+@media (max-width: 860px) {
+  .mesa { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .resultado { position: static; }
+  .guia-vacia { min-height: 10rem; }
+}
+@media (max-width: 420px) {
+  .segmentos { grid-auto-flow: row; }
+  .segmentos label + label { border-left: 0; border-top: 2px solid var(--tinta); }
+  .guia-total output { font-size: 2.6rem; }
+}
