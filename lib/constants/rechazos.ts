@@ -23,3 +23,8 @@ export const RECHAZOS: Record<CodigoRechazo, TextoRechazo> = {
 export function esCodigoRechazo(codigo: string): codigo is CodigoRechazo {
   return codigo in RECHAZOS;
 }
+
+export const RECHAZO_MENSAJES: Record<CodigoRechazo, string> = {
+  LIMITE_PESO_EXCEDIDO: "El peso del paquete excede el límite permitido (máx. 20 kg).",
+  LIMITE_MONTO_EXCEDIDO: "El valor declarado excede el límite máximo asegurable ($1,000).",
+};

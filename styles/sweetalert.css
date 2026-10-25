@@ -1,0 +1,102 @@
+/* SweetAlert2 Dracula Theme Custom Styles */
+
+.swal2-dracula-popup {
+  font-family: "Archivo", system-ui, sans-serif !important;
+}
+
+.swal2-dracula-title {
+  font-weight: 800 !important;
+  font-size: 1.5rem !important;
+  color: #f8f8f2 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.swal2-dracula-content {
+  font-size: 1rem !important;
+  color: #9ca3c0 !important;
+  line-height: 1.6 !important;
+}
+
+.swal2-dracula-confirm,
+.swal2-dracula-cancel,
+.swal2-dracula-deny {
+  border-radius: 8px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  font-family: inherit !important;
+  transition: filter 120ms ease, box-shadow 120ms ease, transform 120ms ease !important;
+  border: none !important;
+  box-shadow: 0 10px 30px -20px currentColor !important;
+}
+
+.swal2-dracula-confirm {
+  background: linear-gradient(90deg, #ff79c6 0%, #bd93f9 100%) !important;
+  color: #191a21 !important;
+}
+
+.swal2-dracula-confirm:hover:not(:disabled) {
+  filter: brightness(1.05) !important;
+  box-shadow: 0 15px 40px -25px #ff79c6 !important;
+}
+
+.swal2-dracula-confirm:active:not(:disabled) {
+  transform: translateY(1px) !important;
+}
+
+.swal2-dracula-cancel {
+  background: #343746 !important;
+  color: #f8f8f2 !important;
+  border: 1px solid #44475a !important;
+}
+
+.swal2-dracula-cancel:hover:not(:disabled) {
+  background: #424450 !important;
+}
+
+.swal2-dracula-deny {
+  background: #ff5555 !important;
+  color: #f8f8f2 !important;
+}
+
+.swal2-dracula-deny:hover:not(:disabled) {
+  filter: brightness(1.1) !important;
+  box-shadow: 0 15px 40px -25px #ff5555 !important;
+}
+
+.swal2-dracula-icon {
+  border-radius: 50% !important;
+}
+
+.swal2-dracula-input {
+  background: #343746 !important;
+  border: 1px solid #44475a !important;
+  border-radius: 8px !important;
+  color: #f8f8f2 !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  font-family: inherit !important;
+}
+
+.swal2-dracula-input:focus {
+  border-color: #bd93f9 !important;
+  box-shadow: 0 0 0 3px rgba(189, 147, 249, 0.2) !important;
+  outline: none !important;
+}
+
+.swal2-dracula-input::placeholder {
+  color: #6272a4 !important;
+}
+
+.swal2-dracula-toast {
+  border-radius: 10px !important;
+  box-shadow: 0 15px 50px -30px #bd93f9, 0 0 0 1px rgba(189, 147, 249, 0.15) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swal2-dracula-confirm,
+  .swal2-dracula-cancel,
+  .swal2-dracula-deny {
+    transition: none !important;
+  }
+}

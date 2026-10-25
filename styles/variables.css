@@ -1,13 +1,36 @@
 :root {
-  --mesa: #dce3ea;
-  --mesa-oscura: #c9d2dc;
-  --tinta: #1c2740;
-  --tinta-suave: #56637d;
-  --papel: #ffffff;
-  --cinta: #f5c518;
-  --sello: #c23b2e;
-  --foco: #2f6fdb;
+  /* Dracula Classic */
+  --bg: #282a36;
+  --bg-darker: #191a21;
+  --bg-dark: #21222c;
+  --bg-light: #343746;
+  --bg-lighter: #424450;
+  --current-line: #44475a;
+  --selection: #44475a;
+  --comment: #6272a4;
+
+  --fg: #f8f8f2;
+  --fg-muted: #9ca3c0;
+
+  --red: #ff5555;
+  --orange: #ffb86c;
+  --yellow: #f1fa8c;
+  --green: #50fa7b;
+  --cyan: #8be9fd;
+  --purple: #bd93f9;
+  --pink: #ff79c6;
+
+  /* Mapped to existing names for compatibility */
+  --mesa: var(--bg);
+  --mesa-oscura: var(--bg-lighter);
+  --tinta: var(--fg);
+  --tinta-suave: var(--fg-muted);
+  --papel: var(--bg-light);
+  --cinta: var(--yellow);
+  --sello: var(--red);
+  --foco: var(--purple);
 
   --fuente: "Archivo", system-ui, sans-serif;
   --paso: 1.5rem;
+  --radio: 8px;
 }
