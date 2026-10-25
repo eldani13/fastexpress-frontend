@@ -3,8 +3,9 @@
 import { useCallback, useState } from "react";
 
 import { cotizar } from "@/lib/api";
-import { esCodigoRechazo } from "@/lib/constants";
+import { esCodigoRechazo, RECHAZO_MENSAJES } from "@/lib/constants";
 import { validarNumero } from "@/lib/validation";
+import { alerts } from "@/lib/ui/alerts";
 import type {
   CotizacionRequest,
   ResultadoGuia,
@@ -57,12 +58,15 @@ export function useCotizacion() {
       tipo_envio: tipoEnvio,
     };
 
+    const loadingAlert = alerts.loading("Calculando cotización...");
     setCargando(true);
     try {
       const resultado = await cotizar(datos);
 
       if (resultado.ok) {
         setGuia({ tipo: "ok", cotizacion: resultado.data });
+        alerts.toast("success", "¡Cotización generada correctamente!");
+        loadingAlert.then(() => alerts.close());
         return;
       }
 
@@ -74,17 +78,31 @@ export function useCotizacion() {
           tipo: "fallo",
           mensaje: `El servidor tuvo un error inesperado (código ${status}). Intenta de nuevo; si se repite, reporta el problema.`,
         });
+        alerts.error({
+          title: "Error del servidor",
+          text: `El servidor respondió con código ${status}. Intenta de nuevo más tarde.`,
+          confirmButtonText: "Entendido",
+        });
+        loadingAlert.then(() => alerts.close());
         return;
       }
 
       if (esCodigoRechazo(codigo)) {
         setGuia({ tipo: "rechazo", codigo, datos });
+        alerts.warning({
+          title: "Cotización rechazada",
+          text: RECHAZO_MENSAJES[codigo as keyof typeof RECHAZO_MENSAJES] || "La cotización no cumple con los requisitos.",
+          confirmButtonText: "Entendido",
+        });
+        loadingAlert.then(() => alerts.close());
         return;
       }
 
       if (codigo === "PESO_INVALIDO") {
         setGuia({ tipo: "vacia" });
         setErrores((e) => ({ ...e, peso: body.mensaje ?? "Peso inválido." }));
+        alerts.toast("error", body.mensaje ?? "Peso inválido");
+        loadingAlert.then(() => alerts.close());
         return;
       }
 
@@ -94,6 +112,8 @@ export function useCotizacion() {
           ...e,
           monto: body.mensaje ?? "Monto inválido.",
         }));
+        alerts.toast("error", body.mensaje ?? "Monto inválido");
+        loadingAlert.then(() => alerts.close());
         return;
       }
 
@@ -101,12 +121,24 @@ export function useCotizacion() {
         tipo: "fallo",
         mensaje: body.mensaje || "El servidor no pudo procesar la cotización.",
       });
+      alerts.error({
+        title: "Error",
+        text: body.mensaje || "El servidor no pudo procesar la cotización.",
+        confirmButtonText: "Entendido",
+      });
+      loadingAlert.then(() => alerts.close());
     } catch {
       setGuia({
         tipo: "fallo",
         mensaje:
           "No hay conexión con el servidor. Verifica que la API esté en ejecución en el puerto 8000.",
       });
+      alerts.error({
+        title: "Sin conexión",
+        text: "No hay conexión con el servidor. Verifica que la API esté en ejecución en el puerto 8000.",
+        confirmButtonText: "Reintentar",
+      });
+      loadingAlert.then(() => alerts.close());
     } finally {
       setCargando(false);
     }
