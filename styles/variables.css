@@ -1,0 +1,13 @@
+:root {
+  --mesa: #dce3ea;
+  --mesa-oscura: #c9d2dc;
+  --tinta: #1c2740;
+  --tinta-suave: #56637d;
+  --papel: #ffffff;
+  --cinta: #f5c518;
+  --sello: #c23b2e;
+  --foco: #2f6fdb;
+
+  --fuente: "Archivo", system-ui, sans-serif;
+  --paso: 1.5rem;
+}

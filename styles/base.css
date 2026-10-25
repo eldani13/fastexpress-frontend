@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--mesa);
+  color: var(--tinta);
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 0;
+}
+
+.logo {
+  width: 1.4rem;
+  height: 1.4rem;
+  background: var(--cinta);
+  border: 3px solid var(--tinta);
+  border-radius: 3px;
+  box-shadow: 4px -4px 0 -1px var(--tinta);
+}
+
+.marca-nombre {
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.mesa {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  gap: 3rem;
+  align-items: start;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  font-stretch: 70%;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.intro {
+  max-width: 34rem;
+  margin: 0 0 2rem;
+  color: var(--tinta-suave);
+}

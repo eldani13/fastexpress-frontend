@@ -1,0 +1,29 @@
+@media (max-width: 860px) {
+  .mesa {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .resultado {
+    position: static;
+  }
+
+  .guia-vacia {
+    min-height: 10rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .segmentos {
+    grid-auto-flow: row;
+  }
+
+  .segmentos label + label {
+    border-left: 0;
+    border-top: 2px solid var(--tinta);
+  }
+
+  .guia-total output {
+    font-size: 2.6rem;
+  }
+}
