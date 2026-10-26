@@ -33,7 +33,7 @@ function construirFilas(c: CotizacionResponse): FilaDesglose[] {
     filas.push({
       titulo: `Descuento ${NOMBRES[c.tipo_cliente]}`,
       detalle: porcentaje(c.porcentaje_descuento),
-      valor: `?${dinero(c.descuento)}`,
+      valor: `-${dinero(c.descuento)}`,
       clase: "negativo",
     });
   }
